@@ -76,7 +76,6 @@ _start:
     mov $16, %rdx
     call _scan
 
-
     lea buffer2(%rip), %rsi
     mov $16, %rdx
     call _scan
@@ -86,18 +85,15 @@ _start:
     call _stoi
     mov %rax, %rbx          
 
-
     lea buffer2(%rip), %rsi
     call _stoi
     add %rbx, %rax          
 
     call _itoa
 
-
     movl size2(%rip), %edx
     lea msg2(%rip), %rsi
     call _print
-
 
     lea ans(%rip), %rsi
     mov $16, %rdx
