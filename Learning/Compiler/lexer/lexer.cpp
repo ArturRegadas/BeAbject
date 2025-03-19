@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <regex>
+#include "../token/types.c"
 
 #include <iostream>
 #include <fstream>
@@ -28,7 +29,7 @@
 
 using namespace std;
 
-class Lexer
+class Lexer : private Token
 {
     private:
     string line;
@@ -41,21 +42,9 @@ class Lexer
     }
 
     public: 
-    enum Type{
-        KEYWORD,
-        CLASS,
-        ASSIGN,
-        IDENTIFIER,
-        COLON,
-        NUMBER,
-        OPERATOR,
-        END
-    };
 
     vector<pair<Type, string>> tokens;
     Lexer(string a) : line(a){};
-
-    
 
 
     void Tokenize(){
