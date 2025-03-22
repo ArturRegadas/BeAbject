@@ -57,5 +57,17 @@ class VariableNode : public ASTNode{
 };
 
 class AssinmentNode : public ASTNode{
+    private:
+    string variable;
+    unique_ptr<ASTNode> value;
+
+    public:
+    AssinmentNode(string v, unique_ptr<ASTNode> p) :
+    variable(v), value(move(p)) {}
+
+    void print(int indent = 0)const override{
+        for(int i =0;i<indent;i++)cout<<" ";
+        cout<<"Assinment: "<<variable<<"\n";
+    }
 
 };
