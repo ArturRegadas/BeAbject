@@ -1,3 +1,6 @@
+#ifndef ASTNODE_H
+#define ASTNODE_H
+
 #include <vector>
 #include <string>
 #include <memory>
@@ -68,6 +71,9 @@ class AssinmentNode : public ASTNode{
     void print(int indent = 0)const override{
         for(int i =0;i<indent;i++)cout<<" ";
         cout<<"Assinment: "<<variable<<"\n";
+        value->print(indent + 2);
     }
 
 };
+
+#endif
