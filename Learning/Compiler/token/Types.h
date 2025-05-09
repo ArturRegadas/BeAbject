@@ -1,3 +1,6 @@
+#ifndef TYPES_H
+#define TYPES_H
+
 struct Token {
     enum Type{
         KEYWORD,
@@ -10,3 +13,5 @@ struct Token {
         END
     };
 };
+
+#endif // TYPES_H

@@ -1,10 +1,13 @@
+#ifndef LEXER_H
+#define LEXER_H
+
 #include <unordered_map>
 #include <utility>
 #include <cctype>
 #include <vector>
 #include <string>
 #include <regex>
-#include "../token/types.c"
+#include "../token/Types.h"
 
 #include <iostream>
 #include <fstream>
@@ -29,8 +32,7 @@
 
 using namespace std;
 
-class Lexer : private Token
-{
+class Lexer : private Token{
     private:
     string line;
 
@@ -47,7 +49,7 @@ class Lexer : private Token
     Lexer(string a) : line(a){};
 
 
-    void Tokenize(){
+    vector<pair<Type, string>> tokenize(){
         regex patterns(R"((create|if|else)|(int)|(<-)|([a-zA-Z_][a-zA-Z0-9_]*)|(:)|([0-9]+)|([+*/-])|(;))");      
         auto tokens_begin = sregex_token_iterator(line.begin(), line.end(), patterns);
         auto tokens_end = sregex_token_iterator();
@@ -76,8 +78,10 @@ class Lexer : private Token
                 cout << "Invalid token: " << currentToken << endl;
             }
         }
+        return tokens;
     }
 
 };
 
 
+#endif
