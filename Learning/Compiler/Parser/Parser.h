@@ -1,3 +1,6 @@
+#ifndef PARSER_H
+#define PARSER_H
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -102,14 +105,4 @@ class Parser : private Token{
     }
 };
 
-int main(){
-    string code = "create int<- x: 2+3*4;";
-    Lexer lexer(code);
-    auto tokens = lexer.tokenize();
-
-    Parser parser(tokens);
-    auto ast = parser.parse();
-
-    ast->print();
-
-}
+#endif

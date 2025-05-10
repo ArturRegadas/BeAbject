@@ -13,6 +13,7 @@ using namespace std;
 class ASTNode{
     public:
     virtual void print(int indent = 0) const = 0;
+    virtual string generateCode() const = 0;
     virtual ~ASTNode() {}
 };
 class NumberNode : public ASTNode{
@@ -26,6 +27,11 @@ class NumberNode : public ASTNode{
         for(int i =0;i<indent;i++)cout<<" ";
         cout<< "NumberNode: " << value << "\n";
     }
+
+    string generateCode() const override {
+        return to_string(value);
+    }
+
 };
 class OperatorNode : public ASTNode{
     private:
@@ -39,10 +45,15 @@ class OperatorNode : public ASTNode{
     //fdel
     void print(int indent = 0) const override {
         for(int i =0;i<indent;i++)cout<<" ";
-        cout<< "NumberNode: " << Operator << "\n";
+        cout<< "OperatorNode: " << Operator << "\n";
         left->print(indent+1);
         right->print(indent+1);
     }
+
+    string generateCode() const override {
+        return "(" + left->generateCode() + " " + string(1, Operator) + " " + right->generateCode() + ")";
+    }
+
 
 };
 
@@ -57,6 +68,13 @@ class VariableNode : public ASTNode{
         for(int i =0;i<indent;i++)cout<<" ";
         cout<<"Variable: "<<variable<<"\n";
     }
+
+    string generateCode() const override {
+        return variable;
+    }
+
+
+
 };
 
 class AssinmentNode : public ASTNode{
@@ -72,6 +90,10 @@ class AssinmentNode : public ASTNode{
         for(int i =0;i<indent;i++)cout<<" ";
         cout<<"Assinment: "<<variable<<"\n";
         value->print(indent + 2);
+    }
+
+    string generateCode() const override{
+        return "int " + variable + " = " + value->generateCode() + ";";
     }
 
 };
