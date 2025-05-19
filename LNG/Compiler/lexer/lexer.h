@@ -50,7 +50,7 @@ class Lexer : private Token{
 
 
     vector<pair<Type, string>> tokenize(){
-        regex patterns(R"((create|if|else)|(int)|(<-)|([a-zA-Z_][a-zA-Z0-9_]*)|(:)|([0-9]+)|([+*/-])|(;))");      
+        regex patterns(R"((create|if|else)||(int)|(<-)|([a-zA-Z_][a-zA-Z0-9_]*)|(:)|([0-9]+)|([+*/-])|(;))");      
         auto tokens_begin = sregex_token_iterator(line.begin(), line.end(), patterns);
         auto tokens_end = sregex_token_iterator();
 
